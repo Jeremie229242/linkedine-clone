@@ -9,11 +9,11 @@ export const sendConnectionRequest = async (req, res) => {
 		const senderId = req.user._id;
 
 		if (senderId.toString() === userId) {
-			return res.status(400).json({ message: "You can't send a request to yourself" });
+			return res.status(400).json({ message: "Vous ne pouvez pas vous envoyer une requête à vous-même." });
 		}
 
 		if (req.user.connections.includes(userId)) {
-			return res.status(400).json({ message: "You are already connected" });
+			return res.status(400).json({ message: "Vous êtes déjà connecté" });
 		}
 
 		const existingRequest = await ConnectionRequest.findOne({
@@ -23,7 +23,7 @@ export const sendConnectionRequest = async (req, res) => {
 		});
 
 		if (existingRequest) {
-			return res.status(400).json({ message: "A connection request already exists" });
+			return res.status(400).json({ message: "Une demande de connexion existe déjà." });
 		}
 
 		const newRequest = new ConnectionRequest({
@@ -33,7 +33,7 @@ export const sendConnectionRequest = async (req, res) => {
 
 		await newRequest.save();
 
-		res.status(201).json({ message: "Connection request sent successfully" });
+		res.status(201).json({ message: "Demande de connexion envoyée avec succès" });
 	} catch (error) {
 		res.status(500).json({ message: "Server error" });
 	}
@@ -49,22 +49,22 @@ export const acceptConnectionRequest = async (req, res) => {
 			.populate("recipient", "name username");
 
 		if (!request) {
-			return res.status(404).json({ message: "Connection request not found" });
+			return res.status(404).json({ message: "Requête de connexion introuvable" });
 		}
 
 		// check if the req is for the current user
 		if (request.recipient._id.toString() !== userId.toString()) {
-			return res.status(403).json({ message: "Not authorized to accept this request" });
+			return res.status(403).json({ message: "Je ne suis pas autorisé à accepter cette demande." });
 		}
 
 		if (request.status !== "pending") {
-			return res.status(400).json({ message: "This request has already been processed" });
+			return res.status(400).json({ message: "Cette demande a déjà été traitée." });
 		}
 
 		request.status = "accepted";
 		await request.save();
 
-		// if im your friend then ur also my friend ;)
+		
 		await User.findByIdAndUpdate(request.sender._id, { $addToSet: { connections: userId } });
 		await User.findByIdAndUpdate(userId, { $addToSet: { connections: request.sender._id } });
 
@@ -76,7 +76,7 @@ export const acceptConnectionRequest = async (req, res) => {
 
 		await notification.save();
 
-		res.json({ message: "Connection accepted successfully" });
+		res.json({ message: "Connexion acceptée avec succès" });
 
 		const senderEmail = request.sender.email;
 		const senderName = request.sender.name;
@@ -86,10 +86,10 @@ export const acceptConnectionRequest = async (req, res) => {
 		try {
 			await sendConnectionAcceptedEmail(senderEmail, senderName, recipientName, profileUrl);
 		} catch (error) {
-			console.error("Error in sendConnectionAcceptedEmail:", error);
+			console.error("Erreur lors de l'envoi de l'e-mail de confirmation de connexion:", error);
 		}
 	} catch (error) {
-		console.error("Error in acceptConnectionRequest controller:", error);
+		console.error("Erreur dans le contrôleur acceptConnectionRequest:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -102,19 +102,19 @@ export const rejectConnectionRequest = async (req, res) => {
 		const request = await ConnectionRequest.findById(requestId);
 
 		if (request.recipient.toString() !== userId.toString()) {
-			return res.status(403).json({ message: "Not authorized to reject this request" });
+			return res.status(403).json({ message: "Je ne suis pas autorisé à rejeter cette demande." });
 		}
 
 		if (request.status !== "pending") {
-			return res.status(400).json({ message: "This request has already been processed" });
+			return res.status(400).json({ message: "Cette demande a déjà été traitée." });
 		}
 
 		request.status = "rejected";
 		await request.save();
 
-		res.json({ message: "Connection request rejected" });
+		res.json({ message: "Demande de connexion refusée" });
 	} catch (error) {
-		console.error("Error in rejectConnectionRequest controller:", error);
+		console.error("Erreur dans le contrôleur rejectConnectionRequest:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -130,7 +130,7 @@ export const getConnectionRequests = async (req, res) => {
 
 		res.json(requests);
 	} catch (error) {
-		console.error("Error in getConnectionRequests controller:", error);
+		console.error("Erreur dans le contrôleur getConnectionRequests:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -146,7 +146,7 @@ export const getUserConnections = async (req, res) => {
 
 		res.json(user.connections);
 	} catch (error) {
-		console.error("Error in getUserConnections controller:", error);
+		console.error("Erreur dans le contrôleur getUserConnections:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -159,9 +159,9 @@ export const removeConnection = async (req, res) => {
 		await User.findByIdAndUpdate(myId, { $pull: { connections: userId } });
 		await User.findByIdAndUpdate(userId, { $pull: { connections: myId } });
 
-		res.json({ message: "Connection removed successfully" });
+		res.json({ message: "Connexion supprimée avec succès" });
 	} catch (error) {
-		console.error("Error in removeConnection controller:", error);
+		console.error("Erreur dans le contrôleur removeConnection:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -192,10 +192,10 @@ export const getConnectionStatus = async (req, res) => {
 			}
 		}
 
-		// if no connection or pending req found
+		
 		res.json({ status: "not_connected" });
 	} catch (error) {
-		console.error("Error in getConnectionStatus controller:", error);
+		console.error("Erreur dans le contrôleur getConnectionStatus:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };

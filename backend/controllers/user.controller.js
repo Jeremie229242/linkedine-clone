@@ -5,7 +5,7 @@ export const getSuggestedConnections = async (req, res) => {
 	try {
 		const currentUser = await User.findById(req.user._id).select("connections");
 
-		// find users who are not already connected, and also do not recommend our own profile!! right?
+		
 		const suggestedUser = await User.find({
 			_id: {
 				$ne: req.user._id,
@@ -17,7 +17,7 @@ export const getSuggestedConnections = async (req, res) => {
 
 		res.json(suggestedUser);
 	} catch (error) {
-		console.error("Error in getSuggestedConnections controller:", error);
+		console.error("Erreur dans le contrôleur getSuggestedConnections:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -27,12 +27,12 @@ export const getPublicProfile = async (req, res) => {
 		const user = await User.findOne({ username: req.params.username }).select("-password");
 
 		if (!user) {
-			return res.status(404).json({ message: "User not found" });
+			return res.status(404).json({ message: "User non trouver" });
 		}
 
 		res.json(user);
 	} catch (error) {
-		console.error("Error in getPublicProfile controller:", error);
+		console.error("Erreur dans le contrôleur getPublicProfile:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -76,7 +76,7 @@ export const updateProfile = async (req, res) => {
 
 		res.json(user);
 	} catch (error) {
-		console.error("Error in updateProfile controller:", error);
+		console.error("Erreur dans le contrôleur updateProfile:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };

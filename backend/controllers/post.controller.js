@@ -12,7 +12,7 @@ export const getFeedPosts = async (req, res) => {
 
 		res.status(200).json(posts);
 	} catch (error) {
-		console.error("Error in getFeedPosts controller:", error);
+		console.error("Erreur dans le contrôleur getFeedPosts:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -40,7 +40,7 @@ export const createPost = async (req, res) => {
 
 		res.status(201).json(newPost);
 	} catch (error) {
-		console.error("Error in createPost controller:", error);
+		console.error("Erreur dans createPost controller:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -53,24 +53,24 @@ export const deletePost = async (req, res) => {
 		const post = await Post.findById(postId);
 
 		if (!post) {
-			return res.status(404).json({ message: "Post not found" });
+			return res.status(404).json({ message: "Post non trouvé" });
 		}
 
-		// check if the current user is the author of the post
+		
 		if (post.author.toString() !== userId.toString()) {
-			return res.status(403).json({ message: "You are not authorized to delete this post" });
+			return res.status(403).json({ message: "Vous n'êtes pas autorisé à supprimer cette publication." });
 		}
 
-		// delete the image from cloudinary as well!
+		
 		if (post.image) {
 			await cloudinary.uploader.destroy(post.image.split("/").pop().split(".")[0]);
 		}
 
 		await Post.findByIdAndDelete(postId);
 
-		res.status(200).json({ message: "Post deleted successfully" });
+		res.status(200).json({ message: "Post supprimé avec succès" });
 	} catch (error) {
-		console.log("Error in delete post controller", error.message);
+		console.log("Erreur de suppression dans post controller", error.message);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -84,7 +84,7 @@ export const getPostById = async (req, res) => {
 
 		res.status(200).json(post);
 	} catch (error) {
-		console.error("Error in getPostById controller:", error);
+		console.error("Error dans getPostById controller:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -102,7 +102,7 @@ export const createComment = async (req, res) => {
 			{ new: true }
 		).populate("author", "name email username headline profilePicture");
 
-		// create a notification if the comment owner is not the post owner
+		
 		if (post.author._id.toString() !== req.user._id.toString()) {
 			const newNotification = new Notification({
 				recipient: post.author,
@@ -123,13 +123,13 @@ export const createComment = async (req, res) => {
 					content
 				);
 			} catch (error) {
-				console.log("Error in sending comment notification email:", error);
+				console.log("Erreur lors de l'envoi de l'e-mail de notification de commentaire:", error);
 			}
 		}
 
 		res.status(200).json(post);
 	} catch (error) {
-		console.error("Error in createComment controller:", error);
+		console.error("Erreur dans le contrôleur createComment:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };
@@ -141,12 +141,12 @@ export const likePost = async (req, res) => {
 		const userId = req.user._id;
 
 		if (post.likes.includes(userId)) {
-			// unlike the post
+			
 			post.likes = post.likes.filter((id) => id.toString() !== userId.toString());
 		} else {
-			// like the post
+			
 			post.likes.push(userId);
-			// create a notification if the post owner is not the user who liked
+			
 			if (post.author.toString() !== userId.toString()) {
 				const newNotification = new Notification({
 					recipient: post.author,
@@ -163,7 +163,7 @@ export const likePost = async (req, res) => {
 
 		res.status(200).json(post);
 	} catch (error) {
-		console.error("Error in likePost controller:", error);
+		console.error("Error dans likePost controller:", error);
 		res.status(500).json({ message: "Server error" });
 	}
 };

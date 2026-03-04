@@ -9,8 +9,8 @@ export const getUserNotifications = async (req, res) => {
 
 		res.status(200).json(notifications);
 	} catch (error) {
-		console.error("Error in getUserNotifications controller:", error);
-		res.status(500).json({ message: "Internal server error" });
+		console.error("Erreur dans le contrôleur getUserNotifications:", error);
+		res.status(500).json({ message: "Erreur interne du serveur" });
 	}
 };
 
@@ -25,8 +25,8 @@ export const markNotificationAsRead = async (req, res) => {
 
 		res.json(notification);
 	} catch (error) {
-		console.error("Error in markNotificationAsRead controller:", error);
-		res.status(500).json({ message: "Internal server error" });
+		console.error("Erreur dans le contrôleur markNotificationAsRead:", error);
+		res.status(500).json({ message: "Erreur interne du serveur" });
 	}
 };
 
@@ -39,7 +39,7 @@ export const deleteNotification = async (req, res) => {
 			recipient: req.user._id,
 		});
 
-		res.json({ message: "Notification deleted successfully" });
+		res.json({ message: "Notification supprimé avec succès" });
 	} catch (error) {
 		res.status(500).json({ message: "Server error" });
 	}

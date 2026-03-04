@@ -12,12 +12,12 @@ export const sendWelcomeEmail = async (email, name, profileUrl) => {
 		const response = await mailtrapClient.send({
 			from: sender,
 			to: recipient,
-			subject: "Welcome to UnLinked",
+			subject: "Bienvenue sur UnLinked",
 			html: createWelcomeEmailTemplate(name, profileUrl),
 			category: "welcome",
 		});
 
-		console.log("Welcome Email sent succesffully", response);
+		console.log("Courriel de bienvenue envoyé avec succès", response);
 	} catch (error) {
 		throw error;
 	}
@@ -36,11 +36,11 @@ export const sendCommentNotificationEmail = async (
 		const response = await mailtrapClient.send({
 			from: sender,
 			to: recipient,
-			subject: "New Comment on Your Post",
+			subject: "Nouveau commentaire sur votre publication",
 			html: createCommentNotificationEmailTemplate(recipientName, commenterName, postUrl, commentContent),
 			category: "comment_notification",
 		});
-		console.log("Comment Notification Email sent successfully", response);
+		console.log("Courriel de notification de commentaire envoyé avec succès", response);
 	} catch (error) {
 		throw error;
 	}
@@ -53,7 +53,7 @@ export const sendConnectionAcceptedEmail = async (senderEmail, senderName, recip
 		const response = await mailtrapClient.send({
 			from: sender,
 			to: recipient,
-			subject: `${recipientName} accepted your connection request`,
+			subject: `${recipientName} Nous avons accepté votre demande de connexion`,
 			html: createConnectionAcceptedEmailTemplate(senderName, recipientName, profileUrl),
 			category: "connection_accepted",
 		});

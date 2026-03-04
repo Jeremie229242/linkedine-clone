@@ -43,11 +43,11 @@ const Navbar = () => {
 							<>
 								<Link to={"/"} className='text-neutral flex flex-col items-center'>
 									<Home size={20} />
-									<span className='text-xs hidden md:block'>Home</span>
+									<span className='text-xs hidden md:block'>Acceuil</span>
 								</Link>
 								<Link to='/network' className='text-neutral flex flex-col items-center relative'>
 									<Users size={20} />
-									<span className='text-xs hidden md:block'>My Network</span>
+									<span className='text-xs hidden md:block'>Mon réseau</span>
 									{unreadConnectionRequestsCount > 0 && (
 										<span
 											className='absolute -top-1 -right-1 md:right-4 bg-blue-500 text-white text-xs 
@@ -74,23 +74,23 @@ const Navbar = () => {
 									className='text-neutral flex flex-col items-center'
 								>
 									<User size={20} />
-									<span className='text-xs hidden md:block'>Me</span>
+									<span className='text-xs hidden md:block'>Moi</span>
 								</Link>
 								<button
 									className='flex items-center space-x-1 text-sm text-gray-600 hover:text-gray-800'
 									onClick={() => logout()}
 								>
 									<LogOut size={20} />
-									<span className='hidden md:inline'>Logout</span>
+									<span className='hidden md:inline'>Deconnexion</span>
 								</button>
 							</>
 						) : (
 							<>
 								<Link to='/login' className='btn btn-ghost'>
-									Sign In
+									Se Connecter
 								</Link>
 								<Link to='/signup' className='btn btn-primary'>
-									Join now
+								Inscrivez-vous maintenant
 								</Link>
 							</>
 						)}
