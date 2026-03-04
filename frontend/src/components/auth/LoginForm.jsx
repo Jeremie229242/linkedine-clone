@@ -15,7 +15,7 @@ const LoginForm = () => {
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 		},
 		onError: (err) => {
-			toast.error(err.response.data.message || "Something went wrong");
+			toast.error(err.response.data.message || "Quelque chose s'est mal passé");
 		},
 	});
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
 		<form onSubmit={handleSubmit} className='space-y-4 w-full max-w-md'>
 			<input
 				type='text'
-				placeholder='Username'
+				placeholder='Nom Utilisateur'
 				value={username}
 				onChange={(e) => setUsername(e.target.value)}
 				className='input input-bordered w-full'
@@ -36,7 +36,7 @@ const LoginForm = () => {
 			/>
 			<input
 				type='password'
-				placeholder='Password'
+				placeholder='Mot de Passe'
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				className='input input-bordered w-full'
@@ -44,7 +44,7 @@ const LoginForm = () => {
 			/>
 
 			<button type='submit' className='btn btn-primary w-full'>
-				{isLoading ? <Loader className='size-5 animate-spin' /> : "Login"}
+				{isLoading ? <Loader className='size-5 animate-spin' /> : "Se Connecter"}
 			</button>
 		</form>
 	);

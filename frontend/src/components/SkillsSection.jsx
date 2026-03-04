@@ -24,7 +24,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 
 	return (
 		<div className='bg-white shadow rounded-lg p-6'>
-			<h2 className='text-xl font-semibold mb-4'>Skills</h2>
+			<h2 className='text-xl font-semibold mb-4'>Competences</h2>
 			<div className='flex flex-wrap'>
 				{skills.map((skill, index) => (
 					<span
@@ -45,7 +45,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 				<div className='mt-4 flex'>
 					<input
 						type='text'
-						placeholder='New Skill'
+						placeholder='Nouvelle Competence'
 						value={newSkill}
 						onChange={(e) => setNewSkill(e.target.value)}
 						className='flex-grow p-2 border rounded-l'
@@ -54,7 +54,7 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 						onClick={handleAddSkill}
 						className='bg-primary text-white py-2 px-4 rounded-r hover:bg-primary-dark transition duration-300'
 					>
-						Add Skill
+						Ajouter Competences
 					</button>
 				</div>
 			)}
@@ -66,14 +66,14 @@ const SkillsSection = ({ userData, isOwnProfile, onSave }) => {
 							onClick={handleSave}
 							className='mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300'
 						>
-							Save Changes
+							Sauvegarder
 						</button>
 					) : (
 						<button
 							onClick={() => setIsEditing(true)}
 							className='mt-4 text-primary hover:text-primary-dark transition duration-300'
 						>
-							Edit Skills
+							Modifier Competences
 						</button>
 					)}
 				</>

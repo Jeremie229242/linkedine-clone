@@ -9,7 +9,7 @@ const FriendRequest = ({ request }) => {
 	const { mutate: acceptConnectionRequest } = useMutation({
 		mutationFn: (requestId) => axiosInstance.put(`/connections/accept/${requestId}`),
 		onSuccess: () => {
-			toast.success("Connection request accepted");
+			toast.success("Demande de Connection  accepté");
 			queryClient.invalidateQueries({ queryKey: ["connectionRequests"] });
 		},
 		onError: (error) => {
@@ -20,7 +20,7 @@ const FriendRequest = ({ request }) => {
 	const { mutate: rejectConnectionRequest } = useMutation({
 		mutationFn: (requestId) => axiosInstance.put(`/connections/reject/${requestId}`),
 		onSuccess: () => {
-			toast.success("Connection request rejected");
+			toast.success("Demande de Connection rejecté");
 			queryClient.invalidateQueries({ queryKey: ["connectionRequests"] });
 		},
 		onError: (error) => {
@@ -52,13 +52,13 @@ const FriendRequest = ({ request }) => {
 					className='bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors'
 					onClick={() => acceptConnectionRequest(request._id)}
 				>
-					Accept
+					Accepté
 				</button>
 				<button
 					className='bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors'
 					onClick={() => rejectConnectionRequest(request._id)}
 				>
-					Reject
+					Rejecté
 				</button>
 			</div>
 		</div>

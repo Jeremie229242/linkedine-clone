@@ -74,21 +74,21 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 				<div className='mt-4'>
 					<input
 						type='text'
-						placeholder='Title'
+						placeholder='Titre'
 						value={newExperience.title}
 						onChange={(e) => setNewExperience({ ...newExperience, title: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
 					/>
 					<input
 						type='text'
-						placeholder='Company'
+						placeholder='Entreprise'
 						value={newExperience.company}
 						onChange={(e) => setNewExperience({ ...newExperience, company: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
 					/>
 					<input
 						type='date'
-						placeholder='Start Date'
+						placeholder=' Date'
 						value={newExperience.startDate}
 						onChange={(e) => setNewExperience({ ...newExperience, startDate: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
@@ -101,7 +101,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 							onChange={handleCurrentlyWorkingChange}
 							className='mr-2'
 						/>
-						<label htmlFor='currentlyWorking'>I currently work here</label>
+						<label htmlFor='currentlyWorking'>Je travaille actuellement ici.</label>
 					</div>
 					{!newExperience.currentlyWorking && (
 						<input
@@ -122,7 +122,7 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 						onClick={handleAddExperience}
 						className='bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300'
 					>
-						Add Experience
+						Ajouter Experience
 					</button>
 				</div>
 			)}
@@ -134,14 +134,14 @@ const ExperienceSection = ({ userData, isOwnProfile, onSave }) => {
 							onClick={handleSave}
 							className='mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300'
 						>
-							Save Changes
+							Sauvegarder
 						</button>
 					) : (
 						<button
 							onClick={() => setIsEditing(true)}
 							className='mt-4 text-primary hover:text-primary-dark transition duration-300'
 						>
-							Edit Experiences
+							Modifier Experiences
 						</button>
 					)}
 				</>

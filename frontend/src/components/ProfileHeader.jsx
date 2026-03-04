@@ -23,7 +23,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 	const { mutate: sendConnectionRequest } = useMutation({
 		mutationFn: (userId) => axiosInstance.post(`/connections/request/${userId}`),
 		onSuccess: () => {
-			toast.success("Connection request sent");
+			toast.success("Demande de connexion envoyée");
 			refetchConnectionStatus();
 			queryClient.invalidateQueries(["connectionRequests"]);
 		},
@@ -35,7 +35,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 	const { mutate: acceptRequest } = useMutation({
 		mutationFn: (requestId) => axiosInstance.put(`/connections/accept/${requestId}`),
 		onSuccess: () => {
-			toast.success("Connection request accepted");
+			toast.success("Demande de connexion accepted");
 			refetchConnectionStatus();
 			queryClient.invalidateQueries(["connectionRequests"]);
 		},
@@ -47,7 +47,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 	const { mutate: rejectRequest } = useMutation({
 		mutationFn: (requestId) => axiosInstance.put(`/connections/reject/${requestId}`),
 		onSuccess: () => {
-			toast.success("Connection request rejected");
+			toast.success("Demande de connexion rejecté");
 			refetchConnectionStatus();
 			queryClient.invalidateQueries(["connectionRequests"]);
 		},
@@ -59,7 +59,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 	const { mutate: removeConnection } = useMutation({
 		mutationFn: (userId) => axiosInstance.delete(`/connections/${userId}`),
 		onSuccess: () => {
-			toast.success("Connection removed");
+			toast.success("Connexion supprimée");
 			refetchConnectionStatus();
 			queryClient.invalidateQueries(["connectionRequests"]);
 		},
@@ -89,7 +89,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 							onClick={() => removeConnection(userData._id)}
 						>
 							<X size={20} className='mr-2' />
-							Remove Connection
+							 supprimée Connexion
 						</button>
 					</div>
 				);
@@ -98,7 +98,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 				return (
 					<button className={`${baseClass} bg-yellow-500 hover:bg-yellow-600`}>
 						<Clock size={20} className='mr-2' />
-						Pending
+						En Cours
 					</button>
 				);
 
@@ -109,13 +109,13 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 							onClick={() => acceptRequest(connectionStatus.data.requestId)}
 							className={`${baseClass} bg-green-500 hover:bg-green-600`}
 						>
-							Accept
+							Accepté
 						</button>
 						<button
 							onClick={() => rejectRequest(connectionStatus.data.requestId)}
 							className={`${baseClass} bg-red-500 hover:bg-red-600`}
 						>
-							Reject
+							Rejecté
 						</button>
 					</div>
 				);
@@ -126,7 +126,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 						className='bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-full transition duration-300 flex items-center justify-center'
 					>
 						<UserPlus size={20} className='mr-2' />
-						Connect
+						Connecter
 					</button>
 				);
 		}
@@ -237,7 +237,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 							 transition duration-300'
 							onClick={handleSave}
 						>
-							Save Profile
+							Sauvegarder
 						</button>
 					) : (
 						<button
@@ -245,7 +245,7 @@ const ProfileHeader = ({ userData, onSave, isOwnProfile }) => {
 							className='w-full bg-primary text-white py-2 px-4 rounded-full hover:bg-primary-dark
 							 transition duration-300'
 						>
-							Edit Profile
+							Modifier Profile
 						</button>
 					)
 				) : (

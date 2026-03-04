@@ -45,8 +45,8 @@ const HomePage = () => {
 						<div className='mb-6'>
 							<Users size={64} className='mx-auto text-blue-500' />
 						</div>
-						<h2 className='text-2xl font-bold mb-4 text-gray-800'>No Posts Yet</h2>
-						<p className='text-gray-600 mb-6'>Connect with others to start seeing posts in your feed!</p>
+						<h2 className='text-2xl font-bold mb-4 text-gray-800'>Aucun message pour l'instant</h2>
+						<p className='text-gray-600 mb-6'>Interagissez avec d'autres utilisateurs pour commencer à voir leurs publications dans votre fil d'actualité.!</p>
 					</div>
 				)}
 			</div>
@@ -54,7 +54,7 @@ const HomePage = () => {
 			{recommendedUsers?.length > 0 && (
 				<div className='col-span-1 lg:col-span-1 hidden lg:block'>
 					<div className='bg-secondary rounded-lg shadow p-4'>
-						<h2 className='font-semibold mb-4'>People you may know</h2>
+						<h2 className='font-semibold mb-4'>Les gens que vous connaissez peut-être</h2>
 						{recommendedUsers?.map((user) => (
 							<RecommendedUser key={user._id} user={user} />
 						))}

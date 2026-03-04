@@ -27,7 +27,7 @@ const ProfilePage = () => {
 			await axiosInstance.put("/users/profile", updatedData);
 		},
 		onSuccess: () => {
-			toast.success("Profile updated successfully");
+			toast.success("Profile modifier avec succes");
 			queryClient.invalidateQueries(["userProfile", username]);
 		},
 	});

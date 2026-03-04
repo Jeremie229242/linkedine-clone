@@ -58,28 +58,28 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 				<div className='mt-4'>
 					<input
 						type='text'
-						placeholder='School'
+						placeholder='Ecole'
 						value={newEducation.school}
 						onChange={(e) => setNewEducation({ ...newEducation, school: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
 					/>
 					<input
 						type='text'
-						placeholder='Field of Study'
+						placeholder='Domaine études'
 						value={newEducation.fieldOfStudy}
 						onChange={(e) => setNewEducation({ ...newEducation, fieldOfStudy: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
 					/>
 					<input
 						type='number'
-						placeholder='Start Year'
+						placeholder='Année de debut'
 						value={newEducation.startYear}
 						onChange={(e) => setNewEducation({ ...newEducation, startYear: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
 					/>
 					<input
 						type='number'
-						placeholder='End Year'
+						placeholder='Année de fin'
 						value={newEducation.endYear}
 						onChange={(e) => setNewEducation({ ...newEducation, endYear: e.target.value })}
 						className='w-full p-2 border rounded mb-2'
@@ -101,14 +101,14 @@ const EducationSection = ({ userData, isOwnProfile, onSave }) => {
 							className='mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark
 							 transition duration-300'
 						>
-							Save Changes
+							Sauvegarder
 						</button>
 					) : (
 						<button
 							onClick={() => setIsEditing(true)}
 							className='mt-4 text-primary hover:text-primary-dark transition duration-300'
 						>
-							Edit Education
+							Modifier Education
 						</button>
 					)}
 				</>

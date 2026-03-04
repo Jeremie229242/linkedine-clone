@@ -26,7 +26,7 @@ const Post = ({ post }) => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["posts"] });
-			toast.success("Post deleted successfully");
+			toast.success("Post supprimmer avec succes");
 		},
 		onError: (error) => {
 			toast.error(error.message);
@@ -39,7 +39,7 @@ const Post = ({ post }) => {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["posts"] });
-			toast.success("Comment added successfully");
+			toast.success("Commentaire Ajouter avec succes");
 		},
 		onError: (err) => {
 			toast.error(err.response.data.message || "Failed to add comment");
@@ -57,7 +57,7 @@ const Post = ({ post }) => {
 	});
 
 	const handleDeletePost = () => {
-		if (!window.confirm("Are you sure you want to delete this post?")) return;
+		if (!window.confirm("Êtes-vous sûr de vouloir supprimer ce message ??")) return;
 		deletePost();
 	};
 
@@ -127,10 +127,10 @@ const Post = ({ post }) => {
 
 					<PostAction
 						icon={<MessageCircle size={18} />}
-						text={`Comment (${comments.length})`}
+						text={`Commentaires (${comments.length})`}
 						onClick={() => setShowComments(!showComments)}
 					/>
-					<PostAction icon={<Share2 size={18} />} text='Share' />
+					<PostAction icon={<Share2 size={18} />} text='Partager' />
 				</div>
 			</div>
 
@@ -162,7 +162,7 @@ const Post = ({ post }) => {
 							type='text'
 							value={newComment}
 							onChange={(e) => setNewComment(e.target.value)}
-							placeholder='Add a comment...'
+							placeholder='Ajouter un commentaire...'
 							className='flex-grow p-2 rounded-l-full bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary'
 						/>
 

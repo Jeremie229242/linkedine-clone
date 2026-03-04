@@ -30,7 +30,7 @@ export default function Sidebar({ user }) {
 								to='/'
 								className='flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors'
 							>
-								<Home className='mr-2' size={20} /> Home
+								<Home className='mr-2' size={20} /> Acceuil
 							</Link>
 						</li>
 						<li>
@@ -38,7 +38,7 @@ export default function Sidebar({ user }) {
 								to='/network'
 								className='flex items-center py-2 px-4 rounded-md hover:bg-primary hover:text-white transition-colors'
 							>
-								<UserPlus className='mr-2' size={20} /> My Network
+								<UserPlus className='mr-2' size={20} /> Mon réseau
 							</Link>
 						</li>
 						<li>
@@ -54,7 +54,7 @@ export default function Sidebar({ user }) {
 			</div>
 			<div className='border-t border-base-100 p-4'>
 				<Link to={`/profile/${user.username}`} className='text-sm font-semibold'>
-					Visit your profile
+					Visiter mon profile
 				</Link>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ const SignUpForm = () => {
 			return res.data;
 		},
 		onSuccess: () => {
-			toast.success("Account created successfully");
+			toast.success("Compte créé avec succès");
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 		},
 		onError: (err) => {
