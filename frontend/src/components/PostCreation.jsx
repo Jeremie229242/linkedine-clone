@@ -94,7 +94,7 @@ const PostCreation = ({ user }) => {
 				<button
 					className='bg-primary text-white rounded-lg px-4 py-2 hover:bg-primary-dark transition-colors duration-200'
 					onClick={handlePostCreation}
-					disabled={isPending}
+					disabled={isPending || (!content.trim() && !image)}
 				>
 					{isPending ? <Loader className='size-5 animate-spin' /> : "Partager"}
 				</button>

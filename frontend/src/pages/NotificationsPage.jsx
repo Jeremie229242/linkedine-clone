@@ -27,7 +27,7 @@ const NotificationsPage = () => {
 		mutationFn: (id) => axiosInstance.delete(`/notifications/${id}`),
 		onSuccess: () => {
 			queryClient.invalidateQueries(["notifications"]);
-			toast.success("Notification deleted");
+			toast.success("Notification supprimmer");
 		},
 	});
 
@@ -68,7 +68,7 @@ const NotificationsPage = () => {
 						<Link to={`/profile/${notification.relatedUser.username}`} className='font-bold'>
 							{notification.relatedUser.name}
 						</Link>{" "}
-						accepted your connection request
+						Nous avons accepté votre demande de connexion
 					</span>
 				);
 			default:
@@ -105,7 +105,7 @@ const NotificationsPage = () => {
 					<h1 className='text-2xl font-bold mb-6'>Notifications</h1>
 
 					{isLoading ? (
-						<p>Loading notifications...</p>
+						<p>Chargement notifications...</p>
 					) : notifications && notifications.data.length > 0 ? (
 						<ul>
 							{notifications.data.map((notification) => (
@@ -165,7 +165,7 @@ const NotificationsPage = () => {
 							))}
 						</ul>
 					) : (
-						<p>No notification at the moment.</p>
+						<p>Pas de notification pour le moment.</p>
 					)}
 				</div>
 			</div>

@@ -13,8 +13,8 @@ const PostPage = () => {
 		queryFn: () => axiosInstance.get(`/posts/${postId}`),
 	});
 
-	if (isLoading) return <div>Loading post...</div>;
-	if (!post?.data) return <div>Post not found</div>;
+	if (isLoading) return <div>Chargement post...</div>;
+	if (!post?.data) return <div>Post non trouvé</div>;
 
 	return (
 		<div className='grid grid-cols-1 lg:grid-cols-4 gap-6'>
